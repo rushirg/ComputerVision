@@ -1,11 +1,8 @@
 """
-Assignment: Programming Assignment 1 - Problem 1
-            (Rotation, Translation, and Scaling of an Image)
+(Rotation, Translation, and Scaling of an Image)
 
-Author: Rushikesh Gaidhani(5036426)
+Author: Rushikesh Gaidhani
 
-Class: Computer Vision (CAP 5415)
-Instructor: Dr. Abhijit Mahalanobis
 """
 import cv2
 import math
