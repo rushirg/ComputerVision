@@ -1,8 +1,7 @@
 
 ## Summary
-Following script(cat.py) have the implementation for rotation, translation, and scaling of an image.
-
-The data(image.png) for cat.py is at data/
+Following script(cat.py) have the implementation for rotation, translation, and scaling of an image.</br>
+The script uses image.png as an input image for the operations.
 
 ### Installation
 Make sure Python is installed on your system.</br>
