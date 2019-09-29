@@ -1,11 +1,11 @@
 
-##Summary
+## Summary
 Following script(cat.py) have the implementation for rotation, translation, and scaling of an image.
 
 The data(image.png) for cat.py is at data/
 
 ### Installation
-Make sure Python is installed on your system. 
+Make sure Python is installed on your system.</br>
 if Python is not installed then use the following command lines to install for <b>Ubuntu</b>
 1. ```apt update && apt upgrade -y```
 2. ```apt install python3.6```
