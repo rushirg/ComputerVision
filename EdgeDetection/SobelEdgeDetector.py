@@ -2,6 +2,8 @@
 Sobel Edge Detector
 
 Source Image Credit: By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
+
+More details: https://en.wikipedia.org/wiki/Sobel_operator
 """
 import matplotlib.image as mpimg
 import numpy as np
