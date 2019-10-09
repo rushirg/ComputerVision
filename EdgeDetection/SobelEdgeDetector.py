@@ -5,19 +5,14 @@ Source Image Credit: By Simpsons contributor, CC BY-SA 3.0, https://commons.wiki
 
 More details: https://en.wikipedia.org/wiki/Sobel_operator
 """
-import matplotlib.image as mpimg
 import numpy as np
-import math
+import cv2
 
 
-def rgb2gray(rgb):
-    return np.dot(rgb[..., :3], [0.2989, 0.5870, 0.1140])
-
-
-img = mpimg.imread('Valve_original.PNG')
-gray = rgb2gray(img)
-rows = gray.shape[0]
-columns = gray.shape[1]
+img = cv2.cvtColor(cv2.imread('Valve_original.PNG'), cv2.COLOR_BGR2GRAY)
+import pdb; pdb.set_trace()
+rows = img.shape[0]
+columns = img.shape[1]
 
 Gx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 Gy = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
@@ -29,11 +24,11 @@ y_comp = np.zeros((rows, columns))
 
 for i in range(0, rows - 3):
     for j in range(0, columns - 3):
-        S1 = sum(sum(Gx * gray[i:i + 3, j:j + 3]))
-        S2 = sum(sum(Gy * gray[i:i + 3, j:j + 3]))
+        S1 = sum(sum(Gx * img[i:i + 3, j:j + 3]))
+        S2 = sum(sum(Gy * img[i:i + 3, j:j + 3]))
         x_comp[i, j] = S1
         y_comp[i, j] = S2
-        mag[i + 1, j + 1] = math.sqrt(S1 * S1 + S2 * S2)
-mpimg.imsave('verticalDerivative_x.PNG', x_comp)
-mpimg.imsave('horizontalDerivative_y.PNG', y_comp)
-mpimg.imsave('gradientMagnitudeResult.PNG', mag)
+        mag[i + 1, j + 1] = np.sqrt(S1 * S1 + S2 * S2)
+cv2.imwrite('verticalDerivative_x.PNG', x_comp)
+cv2.imwrite('horizontalDerivative_y.PNG', y_comp)
+cv2.imwrite('gradientMagnitudeResult.PNG', mag)
