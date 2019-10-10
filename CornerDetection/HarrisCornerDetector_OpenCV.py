@@ -5,11 +5,13 @@ Image Source: By Original full portrait: "Playmate of the Month". Playboy Magazi
 import cv2
 import numpy as np
 
-img = cv2.imread('input.png')
-operatedImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
+img = cv2.imread('input.jpg', 0)
+operatedImage = img
 operatedImage = np.float32(operatedImage) 
+img2 = img.copy()
+img2 = cv2.cvtColor(img2, cv2.COLOR_GRAY2BGR)
 
 dest = cv2.cornerHarris(operatedImage, 2, 5, 0.07) 
 dest = cv2.dilate(dest, None)
-img[dest > 0.01 * dest.max()]=[0, 0, 255]
-cv2.imwrite('input_Result.png', img)
+img2[dest > 0.01 * dest.max()]=[0, 0, 255]
+cv2.imwrite('input_Result.jpg', img2)
