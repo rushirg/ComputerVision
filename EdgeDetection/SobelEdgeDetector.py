@@ -5,30 +5,77 @@ Source Image Credit: By Simpsons contributor, CC BY-SA 3.0, https://commons.wiki
 
 More details: https://en.wikipedia.org/wiki/Sobel_operator
 """
-import numpy as np
 import cv2
+import numpy as np
+import logging
+import argparse
 
 
-img = cv2.cvtColor(cv2.imread('Valve_original.PNG'), cv2.COLOR_BGR2GRAY)
-import pdb; pdb.set_trace()
-rows = img.shape[0]
-columns = img.shape[1]
+def sobelEdgeDetector(img, rows, columns, threshold):
+    """Apply Sobel Operator to a given image
+    Args:
+        img         - input gray scale image
+        rows        - number of rows in input image
+        columns     - number of columns in input image
+        threshold   - threshold for resulted gradient magnitud, default=100
+    Returns:
+        mag     - gradient magnitude of the image
+        x_comp  - horizontal derivative
+        y_comp  - vertical derivative
+    """
+    # Sobel Kernels
+    Gx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+    Gy = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
 
-Gx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
-Gy = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
+    # Create Empty image for output, x component, and y component
+    mag = np.zeros((rows, columns))
+    x_comp = np.zeros((rows, columns))
+    y_comp = np.zeros((rows, columns))
 
-mag = np.zeros((rows, columns))
+    # Convolution Operation
+    for i in range(0, rows - 3):
+        for j in range(0, columns - 3):
+            S1 = (Gx * img[i:i + 3, j:j + 3]).sum()
+            S2 = (Gy * img[i:i + 3, j:j + 3]).sum()
+            x_comp[i, j] = S1
+            y_comp[i, j] = S2
+            magnitude = np.sqrt(S1**2 + S2**2)
+            mag[i + 1, j + 1] = magnitude if magnitude > threshold else 0
 
-x_comp = np.zeros((rows, columns))
-y_comp = np.zeros((rows, columns))
+    return mag, x_comp, y_comp
 
-for i in range(0, rows - 3):
-    for j in range(0, columns - 3):
-        S1 = sum(sum(Gx * img[i:i + 3, j:j + 3]))
-        S2 = sum(sum(Gy * img[i:i + 3, j:j + 3]))
-        x_comp[i, j] = S1
-        y_comp[i, j] = S2
-        mag[i + 1, j + 1] = np.sqrt(S1 * S1 + S2 * S2)
-cv2.imwrite('verticalDerivative_x.PNG', x_comp)
-cv2.imwrite('horizontalDerivative_y.PNG', y_comp)
-cv2.imwrite('gradientMagnitudeResult.PNG', mag)
+
+def main():
+
+    # Get threshold value for gradient magnitude
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--threshold', type=int, default=20,
+                        help="Input threshold to apply on gradient magnitude of the image")
+    args = parser.parse_args()
+
+    # Read input image
+    logging.info("Read input image")
+    img = cv2.cvtColor(cv2.imread('Valve_original.PNG'), cv2.COLOR_BGR2GRAY)
+
+    # Get number of rows and columns
+    rows = img.shape[0]
+    logging.info("Number of rows: {}".format(rows))
+    columns = img.shape[1]
+    logging.info("Number of columns: {}".format(columns))
+
+    # Sobel Edge Detector
+    logging.info("Using Sobel Operator to find Edges")
+    mag, x_comp, y_comp = sobelEdgeDetector(img, rows, columns, args.threshold)
+
+    # Save Output Images
+    logging.info("Saving output image for vertical derivative as verticalDerivative_x.PNG")
+    cv2.imwrite('verticalDerivative_x.PNG', x_comp)
+    logging.info("Saving output image for horizontal derivative as horizontalDerivative_y.PNG")
+    cv2.imwrite('horizontalDerivative_y.PNG', y_comp)
+    logging.info("Saving output image for gradient magnitude as gradientMagnitudeResult.PNG")
+    cv2.imwrite('gradientMagnitudeResult.PNG', mag)
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
+    main()
