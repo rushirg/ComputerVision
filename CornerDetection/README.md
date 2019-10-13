@@ -29,7 +29,7 @@ Excute with build-in API from OpenCV : ```python HarrisCornerDetector_OpenCV.py`
 
 ### Result
 Input Image</br>
-<img src="/CornerDetection/input2.jpg" alt="Input Image" title="Input Image" width="394" height="331"></br>
+<img src="/CornerDetection/input2.jpg" alt="Input Image" title="Input Image" width="394" height="331"></br></br>
 Detected Corners</br>
 <img src="/CornerDetection/harrisCornerOutput.jpg" alt="Detected Corners" title="Detected Corners"  width="394" height="331">
 
