@@ -25,11 +25,12 @@ if not, install using </br>
 ### Execute
 Run:</br>
 Execute implementation without any direct API call : ```python HarrisCornerDetector.py``` </br>
-</br>
 Excute with build-in API from OpenCV : ```python HarrisCornerDetector_OpenCV.py```</br>
 
 ### Result
+Input Image</br>
 <img src="/CornerDetection/input2.jpg" alt="Input Image" width="394" height="331">
+Detected Corners</br>
 <img src="/CornerDetection/harrisCornerOutput.jpg" alt="Detected Corners" width="394" height="331">
 
 
