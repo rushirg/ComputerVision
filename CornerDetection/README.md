@@ -24,6 +24,7 @@ if not, install using </br>
 
 ### Execute
 Run:</br>
+Change the directory to code and execute like below</br>
 Execute implementation without any direct API call : ```python HarrisCornerDetector.py``` </br>
 Excute with build-in API from OpenCV : ```python HarrisCornerDetector_OpenCV.py```</br>
 
