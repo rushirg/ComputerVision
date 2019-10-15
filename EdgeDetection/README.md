@@ -22,14 +22,14 @@ Implementation without any direct API call : ```python SobelEdgeDetector.py``` <
 
 ### Result
 Input Image</br>
-<img src="/EdgeDetection/Valve_original.PNG" alt="Input Image" title="Input Image" width="320" height="240"></br></br>
+<img src="/EdgeDetection/images/Valve_original.PNG" alt="Input Image" title="Input Image" width="320" height="240"></br></br>
 Horizontal change</br>
-<img src="/EdgeDetection/horizontalDerivative_y.PNG" alt="along y" title="Horizontal Change"  width="320" height="240"></br></br>
+<img src="/EdgeDetection/images/output/horizontalDerivative_y.PNG" alt="along y" title="Horizontal Change"  width="320" height="240"></br></br>
 Vertical change</br>
-<img src="/EdgeDetection/verticalDerivative_x.PNG" alt="along x" title="Vertical Change"  width="320" height="240"></br></br>
+<img src="/EdgeDetection/images/output/verticalDerivative_x.PNG" alt="along x" title="Vertical Change"  width="320" height="240"></br></br>
 Sobel Operator applied to input Image</br>
-<img src="/EdgeDetection/gradientMagnitudeResult.PNG" alt="result" title="Result Image"  width="320" height="240"></br>
+<img src="/EdgeDetection/images/output/gradientMagnitudeResult.PNG" alt="result" title="Result Image"  width="320" height="240"></br>
 
-## Image Credit
+#### Image Credit
 By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364 </br>
 More details: https://en.wikipedia.org/wiki/Sobel_operator
