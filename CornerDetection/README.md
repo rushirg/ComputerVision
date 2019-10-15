@@ -6,8 +6,8 @@ algorithms to extract corners and infer the features of an image.
 A corner is a point whose local neighbourhood stands in two dominant and different edge directions. In easy words we can say a corner is a junction of two edges, where an edge is a sudden change in image brightness.</br>
 We have used [Sobel Operator](https://en.wikipedia.org/wiki/Sobel_operator) to extract the edges from the input image.
 We have implemented the Harris Corner Detection by two ways.
-1. [Without using any Direct API](https://github.com/rushirg/ComputerVision/blob/master/CornerDetection/HarrisCornerDetector.py)(Only with numpy)
-2. [Using API from OpenCV module](https://github.com/rushirg/ComputerVision/blob/master/CornerDetection/HarrisCornerDetector_OpenCV.py)
+1. [Without using any Direct API](https://github.com/rushirg/ComputerVision/blob/master/CornerDetection/code/HarrisCornerDetector.py)(Only with numpy)
+2. [Using API from OpenCV module](https://github.com/rushirg/ComputerVision/blob/master/CornerDetection/code/HarrisCornerDetector_OpenCV.py)
 
 ### Installation
 Make sure Python is installed on your system.</br>
