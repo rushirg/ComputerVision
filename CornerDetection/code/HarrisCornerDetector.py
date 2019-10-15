@@ -9,7 +9,7 @@ def sobelEdgeOperator(img, rows, columns):
     Args:
         img     - input grayscale image
         row     - number of rows in input image
-        columns - number of columsn in input image
+        columns - number of columns in input image
     Returns:
         Ix  - derivative along x
         Iy  - derivative along y
@@ -62,7 +62,7 @@ def harrisCornerDetection(img, rows, columns, threshold, k):
             x = (w * Ixx[i:i + 3, j:j + 3]).sum()
             y = (w * Iyy[i:i + 3, j:j + 3]).sum()
             xy = (w * Ixy[i: i + 3, j:j + 3]).sum()
-            R = (x * y - np.square(xy)) - (k) * np.square(x + y)
+            R = (x * y - np.square(xy)) - k * np.square(x + y)
             if R > threshold:
                 cv2.circle(img2, (j, i), 1, (0, 0, 255), -1)
     return img2
@@ -72,14 +72,17 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--k", type=float, default=0.06, help="constant value use to square of trace matrix M")
-    parser.add_argument("--threshold", type=int, default=100000000000, help="value to check cornerness")
+    parser.add_argument("--threshold", type=int, default=100000000000, help="value to check corners")
     parser.add_argument("--inputImage", choices=["input.jpg", "input2.jpg"],
                         default="input.jpg", type=str, help="input image to find the corners")
     args = parser.parse_args()
 
+    inputImagePath = "../images/{}".format(args.inputImage)
+    outputImagePath = "../images/output/harrisCornerOutput.jpg"
+
     # Read image
-    logging.info("Read input image from {}".format(args.inputImage))
-    img = cv2.imread('{}'.format(args.inputImage), 0)
+    logging.info("Read input image from {}".format(inputImagePath))
+    img = cv2.imread('{}'.format(inputImagePath), 0)
 
     # Get number of rows and columns
     rows = img.shape[0]
@@ -92,8 +95,8 @@ def main():
     resultImage = harrisCornerDetection(img, rows, columns, args.threshold, args.k)
 
     # Save output image
-    logging.info("Saving output image as harrisCornerOutput.jpg")
-    cv2.imwrite('harrisCornerOutput.jpg', resultImage)
+    logging.info("Saving output image as {}".format(outputImagePath))
+    cv2.imwrite('{}'.format(outputImagePath), resultImage)
 
 
 if __name__ == "__main__":
