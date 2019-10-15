@@ -1,9 +1,5 @@
 """
 Sobel Edge Detector
-
-Image Credit: By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
-
-More details: https://en.wikipedia.org/wiki/Sobel_operator
 """
 import cv2
 import numpy as np
@@ -17,7 +13,7 @@ def sobelEdgeDetector(img, rows, columns, threshold):
         img         - input gray scale image
         rows        - number of rows in input image
         columns     - number of columns in input image
-        threshold   - threshold for resulted gradient magnitud, default=100
+        threshold   - threshold for resulted gradient magnitude, default=100
     Returns:
         mag     - gradient magnitude of the image
         x_comp  - horizontal derivative
@@ -53,9 +49,12 @@ def main():
                         help="Input threshold to apply on gradient magnitude of the image")
     args = parser.parse_args()
 
+    inputImage = "../images/Valve_original.PNG"
+    outputImagePath = "../images/output/"
+
     # Read input image
     logging.info("Read input image")
-    img = cv2.cvtColor(cv2.imread('Valve_original.PNG'), cv2.COLOR_BGR2GRAY)
+    img = cv2.cvtColor(cv2.imread(inputImage), cv2.COLOR_BGR2GRAY)
 
     # Get number of rows and columns
     rows = img.shape[0]
@@ -68,12 +67,12 @@ def main():
     mag, x_comp, y_comp = sobelEdgeDetector(img, rows, columns, args.threshold)
 
     # Save Output Images
-    logging.info("Saving output image for vertical derivative as verticalDerivative_x.PNG")
-    cv2.imwrite('verticalDerivative_x.PNG', x_comp)
-    logging.info("Saving output image for horizontal derivative as horizontalDerivative_y.PNG")
-    cv2.imwrite('horizontalDerivative_y.PNG', y_comp)
-    logging.info("Saving output image for gradient magnitude as gradientMagnitudeResult.PNG")
-    cv2.imwrite('gradientMagnitudeResult.PNG', mag)
+    logging.info("Saving output image for vertical derivative as {}verticalDerivative_x.PNG".format(outputImagePath))
+    cv2.imwrite('{}verticalDerivative_x.PNG'.format(outputImagePath), x_comp)
+    logging.info("Saving output image for horizontal derivative as {}horizontalDerivative_y.PNG".format(outputImagePath))
+    cv2.imwrite('{}horizontalDerivative_y.PNG'.format(outputImagePath), y_comp)
+    logging.info("Saving output image for gradient magnitude as {}gradientMagnitudeResult.PNG.".format(outputImagePath))
+    cv2.imwrite('{}gradientMagnitudeResult.PNG'.format(outputImagePath), mag)
 
 
 if __name__ == "__main__":

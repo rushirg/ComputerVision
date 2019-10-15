@@ -17,6 +17,7 @@ if not, install using </br>
 ```pip install <package-name>```
 
 ### Execute
+Change the directory to code and then execute below</br>
 Implementation without any direct API call : ```python SobelEdgeDetector.py``` </br>
 
 ### Result
@@ -29,4 +30,6 @@ Vertical change</br>
 Sobel Operator applied to input Image</br>
 <img src="/EdgeDetection/gradientMagnitudeResult.PNG" alt="result" title="Result Image"  width="320" height="240"></br>
 
-
+## Image Credit
+By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364 </br>
+More details: https://en.wikipedia.org/wiki/Sobel_operator
